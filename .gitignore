@@ -1,0 +1,9 @@
+# Godot local cache and a portable Windows engine beside the launcher
+/.godot/
+/Godot*.exe
+
+# Local runtime and configuration
+/runtime/
+/.env
+focus-town.json
+focus-town.json.new

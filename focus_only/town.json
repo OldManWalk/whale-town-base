@@ -1,0 +1,20 @@
+{
+  "buildings": [
+    {"id":"town_hall","name":"镇民中心","initialState":"building","assetId":"building:open_town_hall","pomodoroCostMinutes":1800},
+    {"id":"cottage","name":"林间小屋","initialState":"planned","assetId":"building:open_cottage","pomodoroCostMinutes":3600},
+    {"id":"music_stage_plan","name":"晚风舞台","initialState":"planned","assetId":"building:open_music_stage_plan","pomodoroCostMinutes":6600}
+  ],
+  "footprints": {
+    "town_hall":[4,4,14,12],
+    "cottage":[-16,13,12,10],
+    "music_stage_plan":[23,18,16,11]
+  },
+  "commons": [222,186],
+  "workRoutes": {
+    "logging": [[175,165],[122,153],[82,145]],
+    "farming": [[270,173],[325,161],[392,148]],
+    "town_hall": [[234,173],[250,172],[260,178]],
+    "cottage": [[211,176],[190,173],[163,176],[143,185],[123,193]],
+    "music_stage_plan": [[234,173],[270,169],[313,170],[350,183],[378,194],[391,202]]
+  }
+}

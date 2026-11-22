@@ -1,0 +1,57 @@
+{
+  "schema_version": "asset_license.v1",
+  "bundleId": "assets-open-v1",
+  "defaultTier": "open_redistributable",
+  "assets": [
+    {
+      "assetId": "building:open_cottage",
+      "relativePath": "buildings/open_cottage.png",
+      "licenseTier": "open_redistributable",
+      "licenseName": "WhaleTown Original CC-BY-4.0",
+      "allowedTargets": [
+        "open_source_repo",
+        "private_commercial_live"
+      ]
+    },
+    {
+      "assetId": "building:open_music_stage_plan",
+      "relativePath": "buildings/open_music_stage_plan.png",
+      "licenseTier": "open_redistributable",
+      "licenseName": "WhaleTown Original CC-BY-4.0",
+      "allowedTargets": [
+        "open_source_repo",
+        "private_commercial_live"
+      ]
+    },
+    {
+      "assetId": "building:open_town_hall",
+      "relativePath": "buildings/open_town_hall.png",
+      "licenseTier": "open_redistributable",
+      "licenseName": "WhaleTown Original CC-BY-4.0",
+      "allowedTargets": [
+        "open_source_repo",
+        "private_commercial_live"
+      ]
+    },
+    {
+      "assetId": "world:shore",
+      "relativePath": "world/shore.png",
+      "licenseTier": "open_redistributable",
+      "licenseName": "WhaleTown original coast, assisted texture study, CC-BY-4.0",
+      "allowedTargets": [
+        "open_source_repo",
+        "private_commercial_live"
+      ]
+    },
+    {
+      "assetId": "avatar:open_visitors",
+      "relativePath": "avatars/open_visitors.png",
+      "licenseTier": "open_redistributable",
+      "licenseName": "WhaleTown Original CC-BY-4.0",
+      "allowedTargets": [
+        "open_source_repo",
+        "private_commercial_live"
+      ]
+    }
+  ]
+}
