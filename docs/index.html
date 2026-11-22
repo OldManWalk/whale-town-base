@@ -153,6 +153,7 @@
     .scope-layers li:nth-child(n+3) { border-top: 1px solid #638476; }
     .scope-layers h3 { color: var(--sun); font-size: 1.18rem; font-weight: 760; }
     .scope-layers p { color: #deece3; font-size: .93rem; line-height: 1.66; margin-top: 4px; }
+    .scope-link { color: var(--mint); font-size: .88rem; text-underline-offset: 4px; display: inline-block; margin-top: 7px; }
 
     .section { padding-block: clamp(61px, 8vw, 110px); }
     .section h2 { font-size: clamp(2rem, 4.2vw, 3.85rem); font-weight: 850; line-height: 1.28; letter-spacing: -.075em; text-wrap: balance; }
@@ -171,6 +172,30 @@
     .purpose h2 { text-wrap: initial; }
     .purpose-prose { font-size: clamp(1.03rem, 1.55vw, 1.21rem); line-height: 1.96; max-width: 36em; }
     .purpose-prose p + p { margin-top: 14px; color: #365c4e; }
+    .weather-demo {
+      display: grid;
+      grid-template-columns: minmax(0, .83fr) minmax(0, 1.17fr);
+      align-items: center;
+      gap: clamp(23px, 5vw, 76px);
+      margin-top: clamp(34px, 5vw, 62px);
+      padding-block: 22px;
+      border-block: 1px solid var(--line);
+    }
+    .weather-demo h3 { font-size: clamp(1.22rem, 2.3vw, 1.88rem); line-height: 1.4; text-wrap: balance; }
+    .weather-demo p { margin-top: 9px; color: var(--muted); max-width: 29em; }
+    .weather-demo img { width: 100%; height: auto; background: var(--pine); border: 1px solid #769183; }
+    .weather-toggle {
+      margin-top: 16px;
+      min-height: 44px;
+      padding: 6px 13px;
+      border: 1px solid #638476;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .weather-toggle:hover { background: var(--mint); }
+    .weather-toggle[hidden] { display: none; }
+    .weather-demo + .contributions { margin-top: clamp(24px, 4vw, 45px); }
     .contributions {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -228,6 +253,7 @@
       .hero-links { margin-top: 22px; }
       .scope-diagram { box-shadow: 5px 5px 0 #0d271f; }
       .purpose-grid { gap: 16px; }
+      .weather-demo { grid-template-columns: 1fr; }
       .contributions { grid-template-columns: 1fr; }
       .contribution, .contribution + .contribution { padding: 19px 0; border-left: 0; }
       .contribution + .contribution { border-top: 1px solid var(--line); }
@@ -279,7 +305,7 @@
           </div>
           <ul class="scope-layers">
             <li><h3>地图</h3><p>可公开的地形、道路与场景布局</p></li>
-            <li><h3>环境</h3><p>昼夜、四季、雨雪与光照</p></li>
+            <li><h3>环境</h3><p>昼夜、四季、雨雪与光照</p><a class="scope-link" href="#weather">看云雾变化</a></li>
             <li><h3>通用人物</h3><p>行走、休息与各种作业动作</p></li>
             <li><h3>建造</h3><p>从规划工地到建筑落成的画面</p></li>
           </ul>
@@ -319,6 +345,16 @@
             <p>仓库里的 <code>AGENTS.md</code> 和扩展 Skill 会指出该看哪个文件、改完去哪里看效果。你可以自己动手，也可以让 Agent 读着手册，陪你做第一个改动。</p>
           </div>
         </div>
+        <figure class="weather-demo" id="weather">
+          <figcaption>
+            <h3>云影过会馆，薄雾漫过农田</h3>
+            <p>晴转阴、起雾、岸边雾散。画面节选自直播原地图的天气实录，沿用原片的缩时。</p>
+            <button class="weather-toggle" type="button" aria-controls="weather-motion" hidden>播放动图</button>
+          </figcaption>
+          <img id="weather-motion" src="media/weather-cloud-fog.webp" data-animation="media/weather-cloud-fog.gif"
+            width="576" height="200" loading="lazy"
+            alt="原地图的天气实录。云影掠过会馆，雾带逐渐盖过农田，最后海湾的雾气散开。">
+        </figure>
         <div class="contributions">
           <article class="contribution">
             <h3>从试玩里发现问题</h3>
@@ -369,5 +405,23 @@
     </div>
   </footer>
 
+  <script>
+    const weatherImage = document.querySelector("#weather-motion");
+    const weatherToggle = document.querySelector(".weather-toggle");
+    const still = weatherImage.getAttribute("src");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let playing = false;
+
+    function setWeatherPlaying(enabled) {
+      playing = enabled;
+      weatherImage.src = playing ? weatherImage.dataset.animation : still;
+      weatherToggle.textContent = playing ? "停止动图" : "播放动图";
+    }
+
+    weatherToggle.hidden = false;
+    weatherToggle.addEventListener("click", () => setWeatherPlaying(!playing));
+    reducedMotion.addEventListener("change", () => setWeatherPlaying(!reducedMotion.matches));
+    if (!reducedMotion.matches) setWeatherPlaying(true);
+  </script>
 </body>
 </html>
